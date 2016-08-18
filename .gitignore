@@ -1,0 +1,7 @@
+## Build arefacts
+/node_modules
+/out
+/server.pid
+
+## IDEs, etc...
+.DS_Store
