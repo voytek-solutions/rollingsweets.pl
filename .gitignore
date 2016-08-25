@@ -2,6 +2,7 @@
 /node_modules
 /out
 /server.pid
+*.afdesign
 
 ## IDEs, etc...
 .DS_Store
