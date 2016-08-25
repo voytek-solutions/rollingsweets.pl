@@ -13,16 +13,21 @@ watch: server_start
 ## Builds website
 build:
 	rm -rf out
-	mkdir out
-	cp -R img out/
+	mkdir -p out/img
+	find ./img -name "*.png" | xargs -I{} cp {} out/{}
 	./node_modules/.bin/html-minifier \
+		--minify-css \
 		--collapse-whitespace \
 		--keep-closing-slash \
 		index.html > out/index.html
 
-## Deploy from `/out`
+## Deploy to production server
 deploy:
 	scp -r out/* woledzki@s2.mydevil.net:~/domains/rollingsweets.pl/public_html/
+
+## Deploy to staging server
+deploy_stg:
+	scp -r out/* woledzki@s2.mydevil.net:~/domains/stg.rollingsweets.pl/public_html/
 
 ## Start local server
 server_start: server.pid

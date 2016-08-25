@@ -2,10 +2,46 @@
 <head>
 	<title itemprop="name">Rolling Sweets</title>
 	<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1" />
+	<style>
+.f {
+	height: 100%;
+	text-align: center;
+	white-space: nowrap;
+	width: 100%;
+}
+.f:before {
+	content: "";
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+.f img {
+	border-radius: 1000px;
+	max-height: 96%;
+	max-width: 96%;
+	vertical-align: middle;
+}
+.o {
+	background-image: url(/img/bg.png);
+	background-size: 67px 72px;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+body {
+	background: #d34f78;
+	background: linear-gradient(135deg, #d34f78 0%,#52a7b0 100%);
+	margin: 0;
+	padding: 0;
+}
+	</style>
 </head>
 <body>
-	<div style="height:100%;width:100%;text-align:center;">
-		<img alt="Rolling Sweets" src="/img/logo.png" style="width:100%;max-width:500px;position:absolute;left:50%;top:50%;transform:translateY(-50%) translateX(-50%);"/>
+	<div class="o">
+		<div class="f">
+			<img alt="Rolling Sweets" src="/img/logo.png" />
+		</div>
 	</div>
 </body>
 </html>
