@@ -6,20 +6,39 @@ deps:
 ## Watch and build on code change
 watch: server_start
 	while sleep 1; do \
-		find Makefile index.html img/ \
+		find Makefile jst/ js/ css/ img/ \
 		| entr -d make build; \
 	done
 
 ## Builds website
-build:
-	rm -rf out
+build: build_css build_js build_images
+	node compile_jst.js ./jst
+	node render_html.js
+
+## Build tmp css files to be loaded and included directly in the page
+build_css: tmp
+	@rm -rf tmp/css
+	@mkdir -p tmp/css
+	~/.gem/ruby/2.0.0/bin/sass \
+			--style compressed \
+			--sourcemap=none \
+			css/inline.scss \
+			tmp/css/inline.css
+
+## Build JavaScript
+build_js:
+	@rm -rf tmp/js
+	@mkdir -p tmp/js
+	node compile_jst.js ./js/views
+	./node_modules/.bin/webpack \
+		--optimize-minimize
+
+## Build Images
+build_images:
+	rm -rf out/img
 	mkdir -p out/img
-	find ./img -name "*.png" | xargs -I{} cp {} out/{}
-	./node_modules/.bin/html-minifier \
-		--minify-css \
-		--collapse-whitespace \
-		--keep-closing-slash \
-		index.html > out/index.html
+	mkdir -p out/img/menu
+	find ./img -name "*.png" -or -name "*.jpg" | xargs -I{} cp {} out/{}
 
 ## Deploy to production server
 deploy:
@@ -34,13 +53,21 @@ server_start: server.pid
 
 ## Stop local server
 server_stop: server.pid
-	kill `cat $<` && rm $<
+	kill `cat $<` || echo "nothing to kill"
+	rm $<
 
 server.pid:
 	cd out && { \
 		php -S localhost:4000 & \
 		echo $$! > ../$@; \
 	}
+
+tmp:
+	mkdir tmp
+
+## Clean up project folder
+clean:
+	rm -rf tmp
 
 ## Print this help
 help:

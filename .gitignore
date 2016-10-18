@@ -1,8 +1,15 @@
-## Build arefacts
+## Build artefacts
 /node_modules
 /out
+/tmp
+/.sass-cache
 /server.pid
-*.afdesign
+/jst/*.js
+/js/views/*.js
+
+
+
 
 ## IDEs, etc...
 .DS_Store
+*.afdesign
