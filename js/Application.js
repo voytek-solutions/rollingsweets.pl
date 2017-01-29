@@ -13,6 +13,8 @@ class Application {
 	}
 
 	route(location, action) {
+		ga('auto.send', 'pageview', location.pathname);
+
 		if ('/' == location.pathname) {
 			document.body.className = "";
 		} else {
@@ -55,7 +57,7 @@ class Application {
 }
 
 function toggleClass(node, className) {
-	console.dir(node);
+	// console.dir(node);
 }
 
 module.exports = Application;

@@ -1,6 +1,15 @@
+GEM_HOME = .gem
+
+export GEM_HOME
 
 ## Install dependencies
-deps:
+deps: .gem/bin/sass node_modules
+
+.gem/bin/sass:
+	mkdir -p .gem
+	gem install sass
+
+node_modules:
 	npm install
 
 ## Watch and build on code change
@@ -16,17 +25,17 @@ build: build_css build_js build_images
 	node render_html.js
 
 ## Build tmp css files to be loaded and included directly in the page
-build_css: tmp
+build_css: .gem/bin/sass tmp
 	@rm -rf tmp/css
 	@mkdir -p tmp/css
-	~/.gem/ruby/2.0.0/bin/sass \
-			--style compressed \
-			--sourcemap=none \
-			css/inline.scss \
-			tmp/css/inline.css
+	.gem/bin/sass \
+		--style compressed \
+		--sourcemap=none \
+		css/inline.scss \
+		tmp/css/inline.css
 
 ## Build JavaScript
-build_js:
+build_js: node_modules
 	@rm -rf tmp/js
 	@mkdir -p tmp/js
 	node compile_jst.js ./js/views
@@ -38,7 +47,7 @@ build_images:
 	rm -rf out/img
 	mkdir -p out/img
 	mkdir -p out/img/menu
-	find ./img -name "*.png" -or -name "*.jpg" | xargs -I{} cp {} out/{}
+	find ./img -not -path "*/.src/*" -and \( -name "*.png" -or -name "*.jpg" \) | xargs -I{} cp {} out/{}
 
 ## Deploy to production server
 deploy:

@@ -6,6 +6,7 @@
 /server.pid
 /jst/*.js
 /js/views/*.js
+/.gem
 
 
 
