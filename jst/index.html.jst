@@ -6,12 +6,12 @@
 	<style>{{= it.style }}</style>
 </head>
 <body>
-	<div class="o">
-		<div class="f">
+	<div class="logo">
+		<div class="logo__frame">
 			<img alt="Rolling Sweets" src="/img/logo.png" />
 		</div>
 	</div>
-	<ul class="l">
+	<ul class="menuboards">
 		<li class="clickable" data-href="/chocko-kebab" style="background-image: url(img/chockokebab.jpg)"></li>
 		<li class="clickable" data-href="/lody-tajskie" style="background-image: url(img/lody-tajskie.jpg)"></li>
 		<li class="clickable" data-href="/churritos" style="background-image: url(img/churritos.jpg)"></li>
@@ -21,6 +21,7 @@
 		<li class="clickable" data-href="/soki" style="background-image: url(img/soki.jpg)"></li>
 		<li class="clickable" data-href="/shakes" style="background-image: url(img/shakes.jpg)"></li>
 	</ul>
+	<div class="footer__gap"></div>
 	<footer>
 		<h3>Galeria Krupówki<br />
 		drugie piętro</h3>
@@ -28,5 +29,13 @@
 	</footer>
 	<div class="v"></div>
 	<script type="text/javascript">{{= it.script }}</script>
+	<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-86859242-1', 'auto', {'siteSpeedSampleRate': 50});
+ga('send', 'pageview');
+	</script>
 </body>
 </html>

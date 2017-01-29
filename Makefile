@@ -38,7 +38,7 @@ build_images:
 	rm -rf out/img
 	mkdir -p out/img
 	mkdir -p out/img/menu
-	find ./img -name "*.png" -or -name "*.jpg" | xargs -I{} cp {} out/{}
+	find ./img -not -path "*/.src/*" -and \( -name "*.png" -or -name "*.jpg" \) | xargs -I{} cp {} out/{}
 
 ## Deploy to production server
 deploy:

@@ -21,5 +21,5 @@ make watch
 To deploy current version:
 
 ```
-make deploy
+make build deploy
 ```
